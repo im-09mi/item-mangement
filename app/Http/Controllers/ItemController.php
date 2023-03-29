@@ -21,15 +21,46 @@ class ItemController extends Controller
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
         // 商品一覧取得
-        $items = Item
-            ::where('items.status', 'active')
-            ->select()
-            ->get();
+        $query = Item::where('items.status', 'active')->orderByDesc("updated_at");
+            
 
-        return view('item.index', compact('items'));
+            //セレクトボックス
+        $selectType = $request->input('type');
+        //検索欄
+        $keyword = $request->input('keyword');
+
+        if(!empty($selectType)) {
+            $query->where('type', '=', "$selectType");
+        }
+
+        if(!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%")
+            -> orWhere('detail', 'LIKE', "%{$keyword}%");
+        }
+
+        $items = $query->get();
+        return view('item.index', compact('items','keyword'));
+    }
+
+    /**
+     * 詳細画面の表示
+     */
+    public function detail($id){
+        $item = Item::find($id);
+//dd($item);
+        return view('item.detail', compact('item'));
+    }
+
+     /**
+     *商品登録画面表示
+     */
+    public function showCreateForm()
+    {
+        //
+        return view('item.add');
     }
 
     /**
@@ -42,14 +73,28 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'name' => 'required|max:100',
+                'type' => 'required|integer',
+                'detail' => 'max:500',
+            ],
+        
+            [
+                'name.required' => '名前欄が入力されていません。',
+                'type.required'  => '種別欄が選択されていません。',
             ]);
+
+            
+        //ログインしたユーザIDを設定する
+        $user_id = Auth::id();
+        $detail=isset($request->detail)?$request->detail:'';
+        $image=isset($request->image)?base64_encode(file_get_contents($request->image)):null;
 
             // 商品登録
             Item::create([
-                'user_id' => Auth::user()->id,
+                'user_id'=>$user_id,
                 'name' => $request->name,
                 'type' => $request->type,
-                'detail' => $request->detail,
+                'detail' => $detail,
+                'image' => $image,
             ]);
 
             return redirect('/items');

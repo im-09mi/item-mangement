@@ -3,14 +3,24 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1 >豊富な商品取り扱いあり</h1>
+    <div class=info>
+    <a href="/detail/23" class=topinfo>新生活応援🌸1人暮らし家電セット</a>
+    </div>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+@foreach ($items as $item)
+<img src="data:image/png;base64,{{ $item->image }}" class=topimage>
+<a href="/detail/{{$item->id}}" class=imagename>{{ $item->name }}</a>
+@endforeach
+<a class="pagetop" href="#">
+    <div class="pagetop__arrow"></div></a>
 @stop
 
+
 @section('css')
+    <link rel="stylesheet" href="/css/style.css"> 
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 

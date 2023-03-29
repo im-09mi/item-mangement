@@ -7,11 +7,26 @@
 @stop
 
 @section('content')
+<div class="wrapper m-4">
+        <div class="post-search-form col-md-6">
+        <form class="form-inline" action="/items" method="get">
+            <div class="form-group d-flex">
+                <select name="type" class="form-select text-muted w-25 bg-light" aria-label="Default select example">
+                    <option value="" selected>種別を選択</option>
+                    @foreach(config('pref') as $key => $score)
+                    <option value="{{$key}}">{{ $score }}</option>
+                    @endforeach
+                </select>
+                <input type="text" name="keyword"  class="form-control" placeholder="キーワードを入力">
+                <input type="submit" value="検索" class="btn btn-primary">
+            </div>
+        </form>
+        </div>
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">商品一覧</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
@@ -27,7 +42,8 @@
                                 <th>ID</th>
                                 <th>名前</th>
                                 <th>種別</th>
-                                <th>詳細</th>
+                                <th>更新日時</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +52,8 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->type }}</td>
-                                    <td>{{ $item->detail }}</td>
+                                    <td>{{ $item->updated_at }}</td>
+                                    <td><a href="{{ route('detail', ['id'=>$item->id]) }}" class="btn btn-outline-success ">詳細</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -45,9 +62,12 @@
             </div>
         </div>
     </div>
+    <a class="pagetop" href="#">
+    <div class="pagetop__arrow"></div></a>
 @stop
 
 @section('css')
+<link rel="stylesheet" href="/css/style.css"> 
 @stop
 
 @section('js')
