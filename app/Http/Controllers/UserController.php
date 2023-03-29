@@ -46,4 +46,16 @@ class UserController extends Controller
         $users->save();
         return redirect('/user');
     }
+
+    public function memberDelete(Request $request){
+        
+        $user = User::where('id','=',$request->id)->first();
+        //ユーザーIDが自分のIDだったら削除してログイン画面へ遷移
+        if(($user->id == Auth::id())) {
+            $user->delete();
+            return redirect('/');
+            }
+            $user->delete();
+        return redirect('/user');
+    }      
 }

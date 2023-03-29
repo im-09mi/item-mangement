@@ -43,15 +43,19 @@
         <input type="hidden" name="role" value= "{{$user->role}}">
 
         <div class="form-group">
-        <button type="submit" class="btn btn-info btn-block ">編集</button>
+        <button type="submit" class="userbtn btn-info btn-block ">編集</button>
+    </div>
+    <div class="form-group">
+        <a href="/memberDelete/{{$user->id}}"><button type="button" class="userbtn btn-danger btn-block" onclick='return confirm("削除しますか？")'>削除</button>
     </div>
    
-     <a href="/user" class="btn btn-outline-info" role="button">ユーザー画面へ戻る </a>
+     <a href="/user" class="backbtn btn-outline-info" role="button">ユーザー画面へ戻る </a>
         </form>
 
 @stop
 
 @section('css')
+<link rel="stylesheet" href="/css/style.css">
 @stop
 
 @section('js')
