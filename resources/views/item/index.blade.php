@@ -44,6 +44,7 @@
                                 <th>種別</th>
                                 <th>更新日時</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +55,7 @@
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td><a href="{{ route('detail', ['id'=>$item->id]) }}" class="btn btn-outline-success ">詳細</a></td>
+                                    <td><a href="{{ url('items/edit/'.$item->id) }}" class="btn btn-outline-primary ">編集</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

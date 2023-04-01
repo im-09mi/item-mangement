@@ -27,9 +27,12 @@ Route::post('/memberEdit', [App\Http\Controllers\UserController::class,'memberEd
 Route::get('/memberDelete/{id}', [App\Http\Controllers\UserController::class,'memberDelete']);
 
 Route::get('/detail/{id}', [App\Http\Controllers\ItemController::class, 'detail'])->name('detail');
+Route::get('/items/edit/{item}', [App\Http\Controllers\ItemController::class, 'showEditForm'])->name('item.edit');
+Route::post('/items/edit/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
+Route::get('/items/delete/{item}', [App\Http\Controllers\ItemController::class, 'destroy'])->name('item.delete');
 
 Route::prefix('items')->group(function () {
-    Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\ItemController::class, 'index'])->name('item.index');
     Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
     Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
     

@@ -54,6 +54,66 @@ class ItemController extends Controller
         return view('item.detail', compact('item'));
     }
 
+    
+    /**
+     * 商品更新画面表示
+     *
+     * @param  \App\Models\Item  $item
+     */
+    public function showEditForm(Item $item)
+    {
+        return view('item.edit',compact('item'));
+    }
+
+    
+    /**
+     * 商品更新
+     *
+     * @param  \App\Models\Item  $item
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Item $item,Request $request)
+    {
+        //入力チェック
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'type' => 'required|integer',
+            'detail' => 'max:500',
+        ],
+        [
+            'name.required' => '名前欄が入力されていません。',
+            'type.required'  => '種別欄が選択されていません。',
+        ]);
+
+        $detail=isset($request->detail)?$request->detail:'';
+
+        //データ更新
+        $item->update([
+            'name' => $request->name,
+
+            'type' => $request->type,
+            'detail' => $detail,
+        ]);
+
+        //商品一覧画面に戻る
+        return redirect()->route('item.index',['id'=>$item->id]);
+    }
+
+    /**
+     * 商品削除
+     *
+     * @param  \App\Models\Item  $item
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Item $item)
+    {
+        $item->delete();
+        //
+        //商品一覧画面に戻る
+        return redirect()->route('item.index');
+    }
+
+
      /**
      *商品登録画面表示
      */
