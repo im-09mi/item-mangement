@@ -54,7 +54,7 @@
             <div class="text-center">
                  
                 <form action="{{ url('/items/delete/'.$item->id) }}" method="GET">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger" onclick='return confirm("削除しますか？")'>
                         削除
                     </button>   
                 </form>    
