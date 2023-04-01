@@ -5,7 +5,7 @@
 @section('content_header')
     <h1 >豊富な商品取り扱いあり</h1>
     <div class=info>
-    <a href="/detail/23" class=topinfo>新生活応援🌸1人暮らし家電セット</a>
+    <a href="/detail/174" class=topinfo>新生活応援🌸1人暮らし家電セット</a>
     </div>
 @stop
 
