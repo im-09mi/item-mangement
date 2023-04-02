@@ -79,6 +79,7 @@ class ItemController extends Controller
             'name' => 'required|max:100',
             'type' => 'required|integer',
             'detail' => 'max:500',
+            
         ],
         [
             'name.required' => '名前欄が入力されていません。',
@@ -86,13 +87,14 @@ class ItemController extends Controller
         ]);
 
         $detail=isset($request->detail)?$request->detail:'';
-
+        $image=isset($request->image)?base64_encode(file_get_contents($request->image)):null;
         //データ更新
+
         $item->update([
             'name' => $request->name,
-
             'type' => $request->type,
             'detail' => $detail,
+            'image' => $image,
         ]);
 
         //商品一覧画面に戻る

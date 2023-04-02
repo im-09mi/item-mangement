@@ -22,7 +22,7 @@
                 </ul>
             </div>
             @endif
-            <form action="{{url('items/edit/'.$item->id)}}" method="post">
+            <form action="{{url('items/edit/'.$item->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="name">名前</label>
@@ -41,10 +41,21 @@
                         @endforeach
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <label for="detail">詳細</label>
                     <textarea id="detail" name="detail" maxlength="500" class="form-control" rows="5">{{old('detail',$item->detail)}}</textarea>
                 </div>
+                <div class="form-group mb-3">
+                    <label for="image">イメージ画像</label>
+                    @if($item -> image != NULL)
+                <img src="data:image/png;base64,{{old('image',$item->image)}}" alt="image" style="width: 30%; height: auto;">
+                @else
+                <p>画像なし</p>
+                @endif
+                </div>
+                <input id="image" type="file" name="image" value="{{old('image')}}">
+                    
                 <div class="text-center m-3">
                     <button type="submit" class="btn btn-primary">
                         更新
@@ -63,6 +74,8 @@
         </div>
     </div>
 </div>
+<a class="pagetop" href="#">
+    <div class="pagetop__arrow"></div></a>
 @endsection
 
 
