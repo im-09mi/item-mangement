@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -32,7 +33,7 @@ class UserController extends Controller
         $request -> validate([
         
         'name'=>['required'],
-        'email'=>['required','email'],
+        'email'=>['required','email',Rule::unique('users', 'email')->ignore($request->id)],
         'password'=>['required','string', 'min:8'],
         'confirm_password' => ['required', 'same:password'],   
         
