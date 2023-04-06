@@ -1,35 +1,35 @@
-## 商品管理システム
+# 商品管理システム
 
-### 環境構築手順
+## 概要
+このシステムでは家電量販店の商品を管理することができます。
+商品の新規登録や編集、削除が行えます。また検索機能も充実しているので商品検索が容易に行えます。
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLかPostgreSQLのデータベース作成（名前：item_management）  
-  ローカルでMAMPを使用しているのであれば、MySQL推奨
-* .env にデータベース接続情報追加
+## 主な機能
+- ログイン、ログアウト
+- 会員登録
+- ホーム画面（新着商品表示）
+- 商品一覧画面（検索機能）
+- 商品詳細画面
+- 商品情報編集、削除
+- 商品登録
+- ユーザー情報画面
+- ユーザー情報変更、削除
+
+## 開発環境
 ```
-例）
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=item_management
-DB_USERNAME=root
-DB_PASSWORD=root
+PHP 7.4
+MySQL 10.4
+Laravel 8.83
 ```
-* APP_KEY生成
+## 設計書
+[設計書ページへ](https://drive.google.com/drive/folders/13CUrU3Jfmi31Pm8J49LYrmPG39THxvR8)
+
+## システム閲覧
+[アプリケーションページへ](https://techis-item-management-lalaver.herokuapp.com/login)
+
+### テストアカウント情報
 ```
-$ php artisan key:generate
+メールアドレス taro@techis.jp
+パスワード tarotechis
 ```
-* Composerインストール
-```
-$ composer install
-```
-* フロント環境構築
-```
-$ npm install
-$ npm run dev
-```
-* マイグレーション
-```
-$ php artisan migrate
-```
+
