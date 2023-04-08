@@ -64,6 +64,9 @@
             </div>
         </div>
     </div>
+    <div class = "d-flex justify-content-center">
+    {{ $items->links('pagination::bootstrap-4') }}
+    </div>
     <a class="pagetop" href="#">
     <div class="pagetop__arrow"></div></a>
 @stop

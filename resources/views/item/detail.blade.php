@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="wrapper m-4">
-        <a class="" href="/items">
+    <a href="#" onclick="window.history.back(); return false;">
             <-商品一覧画面に戻る
         </a>
         <table class="table table-striped">

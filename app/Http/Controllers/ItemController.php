@@ -41,7 +41,7 @@ class ItemController extends Controller
             -> orWhere('detail', 'LIKE', "%{$keyword}%");
         }
 
-        $items = $query->get();
+        $items = $query->paginate(10);
         return view('item.index', compact('items','keyword'));
     }
 

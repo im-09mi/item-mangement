@@ -11,8 +11,14 @@
 
 @section('content')
 @foreach ($items as $item)
+<div class = "a">
+<div class = "top">
 <img src="data:image/png;base64,{{ $item->image }}" class=topimage>
+</div>
+<div class = "topname">
 <a href="/detail/{{$item->id}}" class=imagename>{{ $item->name }}</a>
+</div>
+</div>
 @endforeach
 <a class="pagetop" href="#">
     <div class="pagetop__arrow"></div></a>

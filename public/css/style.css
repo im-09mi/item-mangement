@@ -67,9 +67,15 @@
 }
 
 .topimage{
- width: 40%;
+ width: 85%;
  max-width: 100%;
     height: auto;
+}
+
+.topname{
+    text-align: center;
+    font-size: 30px;
+    border: solid 1px;
 }
 
 .userbtn{
@@ -81,7 +87,7 @@
     margin-left: 39%;
 }
 
-
-
-
+.a{
+    float: left;
+}
 
