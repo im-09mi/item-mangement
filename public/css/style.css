@@ -23,7 +23,7 @@
   .topinfo:after {
     /*タブ*/
     position: absolute;
-    font-family: "Font Awesome 5 Free",'Quicksand','Avenir','Arial',sans-serif;
+    font-family: "Font Awesome 6 Free",'Quicksand','Avenir','Arial',sans-serif;
     font-weight: 900;
     content: '\f00c Check';
     background: #2196F3;

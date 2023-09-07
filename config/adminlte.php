@@ -228,17 +228,17 @@ return [
         [
             'text' => '商品登録',
             'url'  => 'items/add',
-            'icon' => 'fa fa-check',
+            'icon' => 'fa-solid fa-check',
         ],
         [
             'text' => '商品一覧',
             'url'  => 'items',
-            'icon' => 'fa fa-check',
+            'icon' => 'fa-solid fa-check',
         ],
         [
             'text' => 'ユーザー情報変更',
             'url'  => '/user',
-            'icon' => 'fa fa-check',
+            'icon' => 'fa-solid fa-check',
         ],
 
         // AdminLTEデフォルト
